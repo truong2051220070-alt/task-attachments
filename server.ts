@@ -3,6 +3,7 @@ import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import multer from 'multer';
 import * as taskController from './src/backend/taskController.js';
+import * as chatController from './src/backend/chatController.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -21,6 +22,10 @@ async function startServer() {
   app.patch('/api/tasks/:id/status', taskController.updateTaskStatus);
   app.post('/api/tasks/:id/attachment', upload.single('file'), taskController.uploadAttachment);
   app.delete('/api/tasks/:id/attachment', taskController.deleteAttachment);
+
+  // Chat Routes
+  app.get('/api/messages', chatController.listMessages);
+  app.post('/api/messages', chatController.sendMessage);
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== 'production') {

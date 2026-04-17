@@ -11,6 +11,13 @@ export interface Task {
   updated_at: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  user_name: string;
+  content: string;
+  created_at: string;
+}
+
 export interface CreateTaskDto {
   title: string;
   description?: string;

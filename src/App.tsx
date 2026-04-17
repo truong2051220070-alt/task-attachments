@@ -1,5 +1,6 @@
 import { TaskForm } from './components/TaskForm';
 import { TaskList } from './components/TaskList';
+import { ChatBox } from './components/ChatBox';
 import { Database, Zap, Shield, AlertTriangle } from 'lucide-react';
 
 export default function App() {
@@ -68,6 +69,11 @@ export default function App() {
             </div>
           </div>
         </main>
+
+        {/* Chat Sidebar */}
+        <aside className="hidden md:flex h-full">
+          <ChatBox />
+        </aside>
       </div>
 
       <footer className="h-8 bg-white border-t border-[var(--color-border)] flex items-center justify-center text-[11px] text-[#ADB5BD] uppercase tracking-[1px] shrink-0">

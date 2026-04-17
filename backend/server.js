@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import multer from 'multer';
 import * as taskController from './src/controllers/taskController.js';
 import * as chatController from './src/controllers/chatController.js';
+import * as homeController from './src/controllers/homeController.js';
 import dotenv from 'dotenv';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,6 +26,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 // Task Routes
+app.get('/', homeController.Home);
 app.get('/api/tasks', taskController.listTasks);
 app.post('/api/tasks', upload.single('file'), taskController.createTask);
 app.patch('/api/tasks/:id/status', taskController.updateTaskStatus);

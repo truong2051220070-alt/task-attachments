@@ -99,12 +99,12 @@ export const deleteAttachment = async (req, res) => {
     const bucketIndex = task.attachment_url.indexOf(bucketInUrl);
 
     if (bucketIndex === -1) {
-      console.error('Invalid attachment URL format:', task.attachment_url);
-      throw new Error('Could not determine storage path from URL');
+      console.error('Định dạng URL tệp đính kèm không hợp lệ:', task.attachment_url);
+      throw new Error('Không thể xác định đường dẫn lưu trữ từ URL');
     }
 
     const storagePath = task.attachment_url.substring(bucketIndex + bucketInUrl.length);
-    console.log(`Deleting storage file: ${storagePath}`);
+    console.log(`Đang xóa tệp lưu trữ: ${storagePath}`);
 
     // 3. Delete from storage
     const { error: storageError } = await supabaseAdmin.storage
@@ -112,9 +112,9 @@ export const deleteAttachment = async (req, res) => {
       .remove([storagePath]);
 
     if (storageError) {
-      console.warn('Storage deletion warning (continuing to DB update):', storageError);
+      console.warn('Cảnh báo xóa tệp trong lưu trữ (tiếp tục cập nhật DB):', storageError);
     } else {
-      console.log('Successfully deleted file from storage');
+      console.log('Đã xóa tệp khỏi lưu trữ thành công');
     }
 
     // 4. Update DB
@@ -130,10 +130,10 @@ export const deleteAttachment = async (req, res) => {
       throw dbError;
     }
 
-    console.log(`Successfully updated task ${id} in DB`);
+    console.log(`Đã cập nhật thành công task ${id} trong DB`);
     res.json(updatedTask);
   } catch (error) {
-    console.error('Delete attachment error details:', error);
+    console.error('Lỗi xóa tệp đính kèm chi tiết:', error);
     res.status(500).json({ error: error.message });
   }
 };

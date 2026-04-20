@@ -32,7 +32,7 @@ export const TaskList: React.FC = () => {
       <div className="flex items-center justify-between">
         <h2 className="geo-card-title !mb-0 flex items-center gap-2">
           <ListTodo className="w-4 h-4" />
-          DANH SÁCH CÔNG VIỆC ({tasks.length})
+          DANH SÁCH - CÔNG VIỆC ({tasks.length})
         </h2>
       </div>
 

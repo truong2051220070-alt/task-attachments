@@ -90,11 +90,18 @@ export const ChatBox: React.FC = () => {
     setNewMessage('');
 
     try {
-      await apiFetch('/api/messages', {
+      const response = await apiFetch('/api/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_name: userName, content }),
       });
+      if (response.ok) {
+        const saved = await response.json();
+        setMessages(prev => {
+          if (prev.some(m => m.id === saved.id)) return prev;
+          return [...prev, saved];
+        });
+      }
     } catch (err) {
       console.error('Error sending message:', err);
     }

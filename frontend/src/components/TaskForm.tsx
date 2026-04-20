@@ -47,7 +47,7 @@ export const TaskForm: React.FC = () => {
     >
       <h2 className="geo-card-title flex items-center gap-2">
         <Plus className="w-4 h-4" />
-        Tạo Task Mới
+        Tạo Việc mới
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -96,7 +96,7 @@ export const TaskForm: React.FC = () => {
           className="geo-btn-primary w-full flex items-center justify-center gap-2 mt-2"
         >
           {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-          LƯU TASK
+          LƯU CÔNG VIỆC
         </button>
       </form>
     </motion.div>

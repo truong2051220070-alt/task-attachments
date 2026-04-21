@@ -15,17 +15,9 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
-  .split(',')
-  .map((o) => o.trim());
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // allow server-to-server (no origin) and localhost
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS blocked: ${origin}`));
-  },
-  credentials: true,
+  origin: '*',
+  credentials: false,
 }));
 app.use(express.json());
 
